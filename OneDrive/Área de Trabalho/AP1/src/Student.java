@@ -1,0 +1,59 @@
+import java.util.ArrayList;
+
+public class Student {
+    private String nome;
+    private int matricula;
+    private String email;
+    private ArrayList<Classroom> classrooms = new ArrayList<Classroom>();
+
+    // Um aluno pode se matricular em múltiplas turmas (N:N).
+    public void addClassroom(Classroom classroom) {
+        for (Classroom c : classrooms) {
+            if (c.getCodigo() == classroom.getCodigo()) {
+                return;
+            }
+        }
+        classrooms.add(classroom);
+        System.out.println("Turma adicionada com sucesso!");
+
+
+    }
+
+    public void removeClassroom(Classroom classroom) {
+        for (Classroom c : classrooms) {
+            if (c.getCodigo() == classroom.getCodigo()) {
+                System.out.println("Removed Turma " + classroom.getCodigo());
+                classrooms.remove(c);
+                return;
+            }
+
+        }
+    }
+
+    // Cada aluno possui um histórico de desempenho por turma. (falta implementar)
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getNome() {
+        return this.nome;
+    }
+
+    public void setMatricula(int matricula) {
+        this.matricula = matricula;
+    }
+
+    public int getMatricula() {
+        return this.matricula;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+}
