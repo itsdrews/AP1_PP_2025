@@ -7,7 +7,13 @@ public class Assessment {
     private Classroom turma;
     private ArrayList<Submission> submissoes = new ArrayList<>();
 
+    public Assessment(String tipo, double notaMaxima, int peso, Classroom turma) {
+        this.tipo = tipo;
+        this.notaMaxima = notaMaxima;
+        this.peso = peso;
+        this.turma = turma;
 
+    }
     // Uma avaliação está associada a uma turma (1:N).
     public void setTurma(Classroom turma) {
         this.turma = turma;

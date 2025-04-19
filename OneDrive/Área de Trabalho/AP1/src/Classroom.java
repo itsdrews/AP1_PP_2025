@@ -17,6 +17,10 @@ public class Classroom {
         assessments.remove(a);
     }
 
+    public ArrayList<Assessment> getAssessments() {
+        return assessments;
+    }
+
     // Cada turma possui vários alunos (N:N).
     public void addStudent(Student student) {
         for (Student s : students) {
@@ -26,6 +30,10 @@ public class Classroom {
             }
         }
         students.add(student);
+    }
+
+    public ArrayList<Student> getStudents() {
+        return students;
     }
 
     public void removeStudent(Student student) {

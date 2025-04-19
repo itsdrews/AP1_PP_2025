@@ -18,6 +18,9 @@ public class Course {
         System.out.println("Turma: " +classroom.getCodigo() +" adicionado com sucesso!");
     }
 
+    public ArrayList<Classroom> getTurmas() {
+        return turmas;
+    }
     public void removeClassroom(Classroom classroom) {
         for (Classroom c : turmas) {
             if (c.getCodigo()==(classroom.getCodigo())){

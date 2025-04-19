@@ -6,6 +6,11 @@ public class Student {
     private String email;
     private ArrayList<Classroom> classrooms = new ArrayList<Classroom>();
 
+    public Student(String nome, int matricula, String email) {
+        this.nome = nome;
+        this.matricula = matricula;
+        this.email = email;
+    }
     // Um aluno pode se matricular em múltiplas turmas (N:N).
     public void addClassroom(Classroom classroom) {
         for (Classroom c : classrooms) {
