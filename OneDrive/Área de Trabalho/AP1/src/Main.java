@@ -2,7 +2,6 @@ import java.util.Random;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
 
         //Implementando com pelo menos 2 professores com cursos distintos.
         Teacher prof1 = new Teacher ("Giorgian Daniel de Arrascaeta Benedetti"
@@ -35,9 +34,14 @@ public class Main {
         Student aluno5 = new Student("Erick Roberto Pinheiro",3,"erick@gmail.com");
         turma1.addStudent(aluno5);
 
+        /*
         System.out.println("Professor 2: " + prof1.getNome());
         System.out.println("Curso:" + curso1.getNome());
         System.out.println("Códigs de Turmas: ");
+
+         */
+
+        /*
         for (Classroom c: curso1.getTurmas() ){
             System.out.println("Código: "+c.getCodigo());
             System.out.println("Lista de alunos: ");
@@ -45,20 +49,20 @@ public class Main {
                 System.out.println("Nome: "+s.getNome());
             }
         }
+        */
+
         //3 Avaliações por turma
 
-        Assessment ap1 = new Assessment("Prova",5,2,turma1);
+
+
+        Assessment ap1 = new Assessment("Prova",10,2,turma1);
         turma1.addAssessment(ap1);
         Assessment ap2 = new Assessment("Projeto Prático",10,3,turma1);
         turma1.addAssessment(ap2);
-        Assessment ap3 = new Assessment("Apresentação",5,1,turma1);
+        Assessment ap3 = new Assessment("Apresentação",10,1,turma1);
         turma1.addAssessment(ap3);
 
-        System.out.println("Provas e pesos: ");
         Random random = new Random();
-        for (Assessment as: turma1.getAssessments()){
-            System.out.println("Tipo: "+ as.getTipo()+ " Peso: "+ as.getPeso());
-        }
 
         for (Student s :turma1.getStudents()){
             for (Assessment as: turma1.getAssessments()){
@@ -66,23 +70,28 @@ public class Main {
                 sub.setNota(random.nextDouble()*10);
                 sub.setData("23/4/2025");
                 sub.setObs("");
+                sub.setAluno(s);
                 as.addSubmissao(sub);
 
+
+
             }
         }
 
-        for (Student s :turma1.getStudents()){
-            System.out.println("Aluno: "+s.getNome());
-            for (Assessment as: turma1.getAssessments()){
-                System.out.println("Avaliação: "+ as.getTipo()+ " Peso: "+ as.getPeso());
-                for (Submission sub: as.getSubmissoes()){
-                    System.out.println("Nota: "+ sub.getNota());
-                    System.out.println("Data: "+ sub.getData());
-                    System.out.println("Obs: "+ sub.getObs());
 
-                }
+        for (Assessment as: turma1.getAssessments()){
+            System.out.println("Avaliação: "+ as.getTipo()+ " Peso: "+ as.getPeso());
+            for (Submission sub : as.getSubmissoes()){
+                System.out.println("Aluno: "+ sub.getAluno().getNome());
+                System.out.println("Nota: "+sub.getNota());
             }
+
         }
+
+
+
+
+
 
 
 

@@ -5,29 +5,32 @@ public class PerformanceReport {
     private double mediaPonderada;
     private ArrayList<Double> notas = new ArrayList<>();
     private double aproveitamento;
-    private ArrayList<Assessment> assessments = new ArrayList<>();
+    private ArrayList<Integer> pesos = new ArrayList<>();
+
 
     //Notas individuais;
     public ArrayList<Double> getNotasIndividuais(){
         return notas;
     }
 
-    public void setNotasIndividuais(double nota,Assessment assessment) {
-        notas.add(nota);
-        assessments.add(assessment);
+    public void setNotasIndividuais(ArrayList<Assessment> assessments) {
+        for(Assessment a : assessments){
+            for(Submission sub: a.getSubmissoes()){
+                this.notas.add(sub.getNota());
+                this.pesos.add(a.getPeso());
+            };
+        }
+
 
     }
 
-    public void addAssessment(Assessment assessment) {
-        assessments.add(assessment);
-    }
-
-    public void removeAssessment(Assessment assessment) {
-        assessments.remove(assessment);
-    }
-
-    public void removeNotasIndividuais(double nota){
-        notas.remove(nota);
+    public void removeNotasIndividuais(double nota,ArrayList<Assessment> assessments) {
+        for(Assessment a : assessments){
+            for(Submission sub: a.getSubmissoes()){
+                this.notas.remove(sub.getNota());
+                this.pesos.remove(a.getPeso());
+            };
+        }
     }
     // Média ponderada;
     public void setMediaPonderada() {
@@ -35,8 +38,8 @@ public class PerformanceReport {
         double accPeso = 0;
         int i = 0;
         for (double nota : notas) {
-            acc += nota *(assessments.get(i).getPeso());
-            accPeso += assessments.get(i).getPeso();
+            acc += nota *(pesos.get(i));
+            accPeso += pesos.get(i);
 
 
         }
@@ -54,7 +57,7 @@ public class PerformanceReport {
         return mediaPonderada;
     }
     //Aproveitamento;
-    public void setAproveitamento() {
+    public void setAproveitamento(ArrayList<Assessment> assessments) {
         double acc = 0;
         double accPeso = 0;
         for (Assessment assessment : assessments) {

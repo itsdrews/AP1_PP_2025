@@ -24,15 +24,15 @@ public class Assessment {
     }
     // Cada avaliação possui múltiplas submissões de alunos (N:N).
     public void addSubmissao(Submission submissao) {
-        submissoes.add(submissao);
+        this.submissoes.add(submissao);
     }
 
     public void removeSubmissao(Submission submissao) {
-        submissoes.remove(submissao);
+        this.submissoes.remove(submissao);
     }
 
     public ArrayList<Submission> getSubmissoes() {
-        return submissoes;
+        return this.submissoes;
     }
 
     public void setTipo(String tipo) {
