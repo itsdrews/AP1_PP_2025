@@ -4,8 +4,9 @@ import java.util.ArrayList;
 public class PerformanceReport {
     private double mediaPonderada;
     private ArrayList<Double> notas = new ArrayList<>();
-    private double aproveitamento;
+    private ArrayList<Double> notasMaximas = new ArrayList<>();
     private ArrayList<Integer> pesos = new ArrayList<>();
+    private double aproveitamento;
 
 
     //Notas individuais;
@@ -13,24 +14,36 @@ public class PerformanceReport {
         return notas;
     }
 
-    public void setNotasIndividuais(ArrayList<Assessment> assessments) {
-        for(Assessment a : assessments){
-            for(Submission sub: a.getSubmissoes()){
-                this.notas.add(sub.getNota());
-                this.pesos.add(a.getPeso());
-            };
+    public void setNotasIndividuais(Student aluno) {
+        for(Classroom cr: aluno.getClassrooms()){
+            for(Assessment as: cr.getAssessments()){
+                for(Submission sub: as.getSubmissoes()){
+                    if(sub.getAluno().getNome().equals(aluno.getNome())){
+                        this.notas.add(sub.getNota());
+                        this.pesos.add(as.getPeso());
+                        this.notasMaximas.add(as.getNotaMaxima());
+                    }
+                }
+            }
         }
+
+
 
 
     }
-
-    public void removeNotasIndividuais(double nota,ArrayList<Assessment> assessments) {
-        for(Assessment a : assessments){
-            for(Submission sub: a.getSubmissoes()){
-                this.notas.remove(sub.getNota());
-                this.pesos.remove(a.getPeso());
-            };
+    //REFAZER
+    public  void removeNotasIndividuais(Student aluno) {
+        for(Classroom cr: aluno.getClassrooms()){
+            for(Assessment as: cr.getAssessments()){
+                for(Submission sub: as.getSubmissoes()){
+                    if(sub.getAluno().getNome().equals(aluno.getNome())){
+                        this.notas.remove(sub.getNota());
+                        this.pesos.remove(as.getPeso());
+                    }
+                }
+            }
         }
+
     }
     // Média ponderada;
     public void setMediaPonderada() {
@@ -40,7 +53,7 @@ public class PerformanceReport {
         for (double nota : notas) {
             acc += nota *(pesos.get(i));
             accPeso += pesos.get(i);
-
+            i++;
 
         }
         try{
@@ -57,20 +70,23 @@ public class PerformanceReport {
         return mediaPonderada;
     }
     //Aproveitamento;
-    public void setAproveitamento(ArrayList<Assessment> assessments) {
+    public void setAproveitamento() {
         double acc = 0;
         double accPeso = 0;
-        for (Assessment assessment : assessments) {
-            acc += assessment.getPeso()*assessment.getNotaMaxima();
-            accPeso += assessment.getPeso();
+        int i = 0;
+        for (double n:notasMaximas) {
+            acc += n*(pesos.get(i));
+            accPeso += pesos.get(i);
+            i++;
+        }
 
-        }
         try{
-            double aproveitamentoMaximo = acc/accPeso;
-            this.aproveitamento = this.mediaPonderada/aproveitamentoMaximo;
+            double apMaximo = acc/accPeso;
+            this.aproveitamento = (mediaPonderada/apMaximo)*100;
         }catch (ArithmeticException e) {
-            System.out.println(e.getMessage() + " Opa!");
+            System.out.println(e.getMessage());
         }
+
 
     }
     public double getAproveitamento() {

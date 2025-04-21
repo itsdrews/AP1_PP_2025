@@ -25,14 +25,19 @@ public class Main {
         //5 alunos (Students)
         Student aluno1 = new Student("Jorge Vercilo",123,"jorgevercilo@gmail.com");
         turma1.addStudent(aluno1);
+        aluno1.addClassroom(turma1);
         Student aluno2 = new Student("Joana D'Arc",122,"joana@gmail.com");
         turma1.addStudent(aluno2);
+        aluno2.addClassroom(turma1);
         Student aluno3 = new Student("Xi Ji Ping",2,"xi@gmail.com");
         turma1.addStudent(aluno3);
+        aluno3.addClassroom(turma1);
         Student aluno4 = new Student("Beatriz Araújo de Oliveira",1,"beatriz@gmail.com");
         turma1.addStudent(aluno4);
+        aluno4.addClassroom(turma1);
         Student aluno5 = new Student("Erick Roberto Pinheiro",3,"erick@gmail.com");
         turma1.addStudent(aluno5);
+        aluno5.addClassroom(turma1);
 
         /*
         System.out.println("Professor 2: " + prof1.getNome());
@@ -76,6 +81,12 @@ public class Main {
 
 
             }
+            PerformanceReport pR = new PerformanceReport();
+            pR.setNotasIndividuais(s);
+            pR.setMediaPonderada();
+            System.out.println("Média ponderada de: "+s.getNome() +" " +pR.getMediaPonderada());
+            pR.setAproveitamento();
+            System.out.println("Aproveitamento: "+pR.getAproveitamento()+ "%");
         }
 
 
@@ -84,9 +95,14 @@ public class Main {
             for (Submission sub : as.getSubmissoes()){
                 System.out.println("Aluno: "+ sub.getAluno().getNome());
                 System.out.println("Nota: "+sub.getNota());
+
+
             }
 
         }
+
+
+
 
 
 

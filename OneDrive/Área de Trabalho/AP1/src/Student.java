@@ -24,6 +24,10 @@ public class Student {
 
     }
 
+    public ArrayList<Classroom> getClassrooms() {
+        return classrooms;
+    }
+
     public void removeClassroom(Classroom classroom) {
         for (Classroom c : classrooms) {
             if (c.getCodigo() == classroom.getCodigo()) {
