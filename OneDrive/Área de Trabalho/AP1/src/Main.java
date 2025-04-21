@@ -100,7 +100,22 @@ public class Main {
             }
 
         }
+        int i = 0;
+        for (Assessment as: turma1.getAssessments()){
+            for(Submission sub: as.getSubmissoes()){
+                i++;
+            }
+        }
+        System.out.println("Submissoes antes: "+i);
+        turma1.removeStudent(aluno1);
 
+        i = 0;
+        for (Assessment as: turma1.getAssessments()){
+            for(Submission sub: as.getSubmissoes()){
+                i++;
+            }
+        }
+        System.out.println("Submissoes depois: "+i);
 
 
 

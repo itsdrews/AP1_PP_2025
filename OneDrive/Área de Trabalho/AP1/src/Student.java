@@ -29,13 +29,9 @@ public class Student {
     }
 
     public void removeClassroom(Classroom classroom) {
-        for (Classroom c : classrooms) {
-            if (c.getCodigo() == classroom.getCodigo()) {
-                System.out.println("Removed Turma " + classroom.getCodigo());
-                classrooms.remove(c);
-                return;
-            }
-
+        if (classrooms.contains(classroom)) {
+            classrooms.remove(classroom);
+            System.out.println("Turma removida com sucesso!");
         }
     }
 

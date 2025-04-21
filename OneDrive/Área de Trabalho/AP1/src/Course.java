@@ -22,12 +22,9 @@ public class Course {
         return turmas;
     }
     public void removeClassroom(Classroom classroom) {
-        for (Classroom c : turmas) {
-            if (c.getCodigo()==(classroom.getCodigo())){
-                System.out.println("Turma: " +classroom.getCodigo() +" removido!");
-                turmas.remove(classroom);
-                return;
-            }
+        if (turmas.contains(classroom)) {
+            turmas.remove(classroom);
+            System.out.println("Turma: " +classroom.getCodigo() +" removido com sucesso!");
         }
     }
 

@@ -23,12 +23,9 @@ public class Teacher {
             System.out.println("Curso: " + course.getNome()+ " adicionado!");
     }
     public void removeCourse(Course course) {
-        for (Course c : courses) {
-            if (c.getNome().equals(course.getNome())) {
-                System.out.println("Curso: " + course.getNome()+ " removido!");
-                courses.remove(c);
-                return; // sai do loop ao remover o curso.
-            }
+        if (courses.contains(course)) {
+            courses.remove(course);
+            System.out.println("Curso: " + course.getNome()+ " removido com sucesso!");
         }
     }
 

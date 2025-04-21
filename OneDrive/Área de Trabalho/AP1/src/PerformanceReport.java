@@ -29,22 +29,11 @@ public class PerformanceReport {
 
 
 
-
     }
     //REFAZER
-    public  void removeNotasIndividuais(Student aluno) {
-        for(Classroom cr: aluno.getClassrooms()){
-            for(Assessment as: cr.getAssessments()){
-                for(Submission sub: as.getSubmissoes()){
-                    if(sub.getAluno().getNome().equals(aluno.getNome())){
-                        this.notas.remove(sub.getNota());
-                        this.pesos.remove(as.getPeso());
-                    }
-                }
-            }
-        }
-
-    }
+    public  void removeNotasIndividuais(Student aluno) {notas.clear();
+        notasMaximas.clear();
+        pesos.clear();}
     // Média ponderada;
     public void setMediaPonderada() {
         double acc = 0;

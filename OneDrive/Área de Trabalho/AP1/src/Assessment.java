@@ -28,7 +28,10 @@ public class Assessment {
     }
 
     public void removeSubmissao(Submission submissao) {
-        this.submissoes.remove(submissao);
+        if (this.submissoes.contains(submissao)) {
+            this.submissoes.remove(submissao);
+            System.out.println("Submissao removida com sucesso!");
+        }
     }
 
     public ArrayList<Submission> getSubmissoes() {
