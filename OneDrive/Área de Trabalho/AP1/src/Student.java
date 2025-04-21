@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Student {
     private String nome;
@@ -59,6 +60,22 @@ public class Student {
 
     public String getEmail() {
         return this.email;
+    }
+
+    public void killAluno() {
+        for (Classroom c : classrooms) {
+            c.removeStudent(this);
+            for (Assessment as : c.getAssessments()) {
+                Iterator<Submission> sub = as.getSubmissoes().iterator();
+                while (sub.hasNext()) {
+                    Submission submission = sub.next();
+                    if (submission.getAluno().getNome().equals(getNome())) {
+                        sub.remove();
+                    }
+                }
+            }
+
+        }
     }
 
 }

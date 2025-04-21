@@ -107,7 +107,7 @@ public class Main {
             }
         }
         System.out.println("Submissoes antes: "+i);
-        turma1.removeStudent(aluno1);
+        aluno1.killAluno();
 
         i = 0;
         for (Assessment as: turma1.getAssessments()){

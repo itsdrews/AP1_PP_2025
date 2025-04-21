@@ -39,20 +39,11 @@ public class Classroom {
 
     public void removeStudent(Student student) {
         if (students.contains(student)) {
-            System.out.println("Removido: "+student.getNome());
-            for(Assessment a: assessments) {
-                Iterator<Submission> sub = a.getSubmissoes().iterator();
-                while(sub.hasNext()) {
-                    Submission submission = sub.next();
-                    if(submission.getAluno().getNome().equals(student.getNome())) {
-                        sub.remove();
-                    }
-                }
-                }
-            }
-            student =null;
+            System.out.println("Removido: " + student.getNome());
+            student = null;
             students.remove(student);
         }
+    }
 
 
     public void setCourse(Course course) {
