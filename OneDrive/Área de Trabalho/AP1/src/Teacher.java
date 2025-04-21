@@ -20,7 +20,6 @@ public class Teacher {
             }
         }
             courses.add(course);
-            System.out.println("Curso: " + course.getNome()+ " adicionado!");
     }
     public void removeCourse(Course course) {
         if (courses.contains(course)) {

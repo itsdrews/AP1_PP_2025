@@ -15,7 +15,6 @@ public class Course {
 
         }
         turmas.add(classroom);
-        System.out.println("Turma: " +classroom.getCodigo() +" adicionado com sucesso!");
     }
 
     public ArrayList<Classroom> getTurmas() {

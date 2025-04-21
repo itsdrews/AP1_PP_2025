@@ -21,7 +21,6 @@ public class Student {
             }
         }
         classrooms.add(classroom);
-        System.out.println("Turma adicionada com sucesso!");
 
 
     }
