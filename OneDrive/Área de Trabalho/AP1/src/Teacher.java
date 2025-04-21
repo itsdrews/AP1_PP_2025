@@ -5,7 +5,7 @@ public class Teacher {
     private String especialidade;
     private int id;
 
-    private ArrayList<Course> courses = new ArrayList<Course>();
+    final private ArrayList<Course> courses = new ArrayList<Course>();
     // Um professor pode ministrar vários cursos (1:N).
     public Teacher(String nome, String especialidade, int id) {
         this.nome = nome;

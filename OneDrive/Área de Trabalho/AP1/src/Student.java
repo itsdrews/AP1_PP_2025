@@ -5,7 +5,8 @@ public class Student {
     private String nome;
     private int matricula;
     private String email;
-    private ArrayList<Classroom> classrooms = new ArrayList<Classroom>();
+    final private ArrayList<Classroom> classrooms = new ArrayList<Classroom>();
+    final private ArrayList<PerformanceReport> performanceReports = new ArrayList<>();
 
     public Student(String nome, int matricula, String email) {
         this.nome = nome;
@@ -37,6 +38,13 @@ public class Student {
     }
 
     // Cada aluno possui um histórico de desempenho por turma. (falta implementar)
+    public void addPerformanceReport(PerformanceReport performanceReport) {
+        for (Classroom c : classrooms) {
+            this.performanceReports.add(performanceReport);
+
+        }
+    }
+
 
     public void setNome(String nome) {
         this.nome = nome;

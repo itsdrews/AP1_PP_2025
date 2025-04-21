@@ -4,7 +4,7 @@ public class Course {
     private int cargaHoraria;
     private String ementa;
     private Teacher teacher;
-    private ArrayList<Classroom> turmas = new ArrayList<Classroom>();
+    final private ArrayList<Classroom> turmas = new ArrayList<Classroom>();
     // Cada curso pode ter N turmas associadas (1:N)
     // Cada curso deve ter exatamente um professor (1:1).
     public void addClassroom(Classroom classroom) {

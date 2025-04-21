@@ -5,7 +5,7 @@ public class Assessment {
     private double notaMaxima;
     private int peso;
     private Classroom turma;
-    private ArrayList<Submission> submissoes = new ArrayList<>();
+    final private ArrayList<Submission> submissoes = new ArrayList<>();
 
     public Assessment(String tipo, double notaMaxima, int peso, Classroom turma) {
         this.tipo = tipo;

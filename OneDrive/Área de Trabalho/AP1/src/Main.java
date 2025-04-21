@@ -11,6 +11,7 @@ public class Main {
 
         Teacher prof2 = new Teacher ("Filipe Luís Kamirski",
                 "Arquitetura de Software",2);
+
         // 2 Cursos com pelo menos 1 turma
         Course curso1 = new Course();
         curso1.setNome("Projetos de Programa");
@@ -19,34 +20,39 @@ public class Main {
         curso1.setTeacher(prof2);
         Classroom turma1 = new Classroom();
         turma1.setCodigo(1);
+
         // 1:N Course: Classrooms
+
         turma1.setCourse(curso1);
         curso1.addClassroom(turma1);
+
+
         //5 alunos (Students)
-        Student aluno1 = new Student("Jorge Vercilo",123,"jorgevercilo@gmail.com");
+        Student aluno1 = new Student("Jorge Vercilo",
+                123,"jorgevercilo@gmail.com");
         turma1.addStudent(aluno1);
         aluno1.addClassroom(turma1);
-        Student aluno2 = new Student("Joana D'Arc",122,"joana@gmail.com");
+        Student aluno2 = new Student("Joana D'Arc",
+                122,"joana@gmail.com");
         turma1.addStudent(aluno2);
         aluno2.addClassroom(turma1);
-        Student aluno3 = new Student("Xi Ji Ping",2,"xi@gmail.com");
+        Student aluno3 = new Student("Xi Ji Ping",
+                2,"xi@gmail.com");
         turma1.addStudent(aluno3);
         aluno3.addClassroom(turma1);
-        Student aluno4 = new Student("Beatriz Araújo de Oliveira",1,"beatriz@gmail.com");
+        Student aluno4 = new Student("Beatriz Araújo de Oliveira",
+                1,"beatriz@gmail.com");
         turma1.addStudent(aluno4);
         aluno4.addClassroom(turma1);
-        Student aluno5 = new Student("Erick Roberto Pinheiro",3,"erick@gmail.com");
+        Student aluno5 = new Student("Erick Roberto Pinheiro",
+                3,"erick@gmail.com");
         turma1.addStudent(aluno5);
         aluno5.addClassroom(turma1);
 
-        /*
+        //Printando as turmas associadas e a lista de alunos
         System.out.println("Professor 2: " + prof1.getNome());
         System.out.println("Curso:" + curso1.getNome());
         System.out.println("Códigs de Turmas: ");
-
-         */
-
-        /*
         for (Classroom c: curso1.getTurmas() ){
             System.out.println("Código: "+c.getCodigo());
             System.out.println("Lista de alunos: ");
@@ -54,11 +60,9 @@ public class Main {
                 System.out.println("Nome: "+s.getNome());
             }
         }
-        */
+
 
         //3 Avaliações por turma
-
-
 
         Assessment ap1 = new Assessment("Prova",10,2,turma1);
         turma1.addAssessment(ap1);
@@ -67,8 +71,8 @@ public class Main {
         Assessment ap3 = new Assessment("Apresentação",10,1,turma1);
         turma1.addAssessment(ap3);
 
+        //Setando as notas e médias ponderadas por turma
         Random random = new Random();
-
         for (Student s :turma1.getStudents()){
             for (Assessment as: turma1.getAssessments()){
                 Submission sub = new Submission(s,as);
@@ -82,24 +86,29 @@ public class Main {
 
             }
             PerformanceReport pR = new PerformanceReport();
-            pR.setNotasIndividuais(s);
+            pR.setNotasIndividuais(turma1,s);
             pR.setMediaPonderada();
-            System.out.println("Média ponderada de: "+s.getNome() +" " +pR.getMediaPonderada());
+            System.out.println("Média ponderada de: "+s.getNome()
+                    +" Disciplina:  "+ pR.getNomeCurso() + " "
+                    + String.format("%.2f",pR.getMediaPonderada()));
             pR.setAproveitamento();
-            System.out.println("Aproveitamento: "+pR.getAproveitamento()+ "%");
+            System.out.println("Aproveitamento: "
+                    +String.format("%.2f",pR.getAproveitamento())+ "%");
         }
 
-
+        //Printando todas as notas de avaliações por submissão
         for (Assessment as: turma1.getAssessments()){
             System.out.println("Avaliação: "+ as.getTipo()+ " Peso: "+ as.getPeso());
             for (Submission sub : as.getSubmissoes()){
                 System.out.println("Aluno: "+ sub.getAluno().getNome());
-                System.out.println("Nota: "+sub.getNota());
+                System.out.println("Nota: "+String.format("%.2f",sub.getNota()));
 
 
             }
 
         }
+
+        //Removendo aluno e derrubando submissões
         int i = 0;
         for (Assessment as: turma1.getAssessments()){
             for(Submission sub: as.getSubmissoes()){

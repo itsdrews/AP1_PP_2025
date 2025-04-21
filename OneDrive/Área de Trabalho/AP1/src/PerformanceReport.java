@@ -3,10 +3,11 @@ import java.util.ArrayList;
 
 public class PerformanceReport {
     private double mediaPonderada;
-    private ArrayList<Double> notas = new ArrayList<>();
-    private ArrayList<Double> notasMaximas = new ArrayList<>();
-    private ArrayList<Integer> pesos = new ArrayList<>();
+    final private ArrayList<Double> notas = new ArrayList<>();
+    final private ArrayList<Double> notasMaximas = new ArrayList<>();
+    final private ArrayList<Integer> pesos = new ArrayList<>();
     private double aproveitamento;
+    private String nomeCurso;
 
 
     //Notas individuais;
@@ -14,9 +15,9 @@ public class PerformanceReport {
         return notas;
     }
 
-    public void setNotasIndividuais(Student aluno) {
-        for(Classroom cr: aluno.getClassrooms()){
-            for(Assessment as: cr.getAssessments()){
+    public void setNotasIndividuais(Classroom classroom,Student aluno) {
+
+            for(Assessment as: classroom.getAssessments()){
                 for(Submission sub: as.getSubmissoes()){
                     if(sub.getAluno().getNome().equals(aluno.getNome())){
                         this.notas.add(sub.getNota());
@@ -24,18 +25,25 @@ public class PerformanceReport {
                         this.notasMaximas.add(as.getNotaMaxima());
                     }
                 }
-            }
+
+            this.nomeCurso = classroom.getCourse();
         }
 
 
 
     }
-    //REFAZER
+    public void setNomeCurso(String nomeCurso) {
+        this.nomeCurso = nomeCurso;
+    }
+    public String getNomeCurso() {
+        return this.nomeCurso;
+    }
     public  void removeNotasIndividuais(Student aluno) {notas.clear();
         notasMaximas.clear();
         pesos.clear();}
     // Média ponderada;
     public void setMediaPonderada() {
+
         double acc = 0;
         double accPeso = 0;
         int i = 0;

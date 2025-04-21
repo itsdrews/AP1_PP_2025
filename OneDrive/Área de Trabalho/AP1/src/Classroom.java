@@ -5,8 +5,8 @@ public class Classroom {
     private int codigo;
     private int periodo;
     private Course course;
-    private ArrayList<Student> students = new ArrayList<Student>();
-    private ArrayList<Assessment> assessments = new ArrayList<Assessment>();
+    final private ArrayList<Student> students = new ArrayList<Student>();
+    final private ArrayList<Assessment> assessments = new ArrayList<Assessment>();
     // Cada turma está ligada a um curso específico (1:1).
 
     // Cada turma possui múltiplas avaliações (1:N).
