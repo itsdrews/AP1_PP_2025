@@ -39,6 +39,8 @@ public class Main {
         Student aluno1 = new Student("Jorge Vercilo",
                 123, "jorgevercilo@gmail.com");
         turma2.addStudent(aluno1);
+        turma1.addStudent(aluno1);
+        aluno1.addClassroom(turma1);
         aluno1.addClassroom(turma2);
         Student aluno2 = new Student("Joana D'Arc",
                 122, "joana@gmail.com");
@@ -79,16 +81,19 @@ public class Main {
 
         //Setando as notas e médias ponderadas por turma → avaliacao → submissao e utilizando PerformanceReport
 
-        mostrarMediasPorAluno(turma1);
-        mostrarMediasPorAluno(turma2);
+        //mostrarMediasPorAluno(turma1);
+        //mostrarMediasPorAluno(turma2);
+
+        //Mostrando médias por aluno → turmas → avaliacao → submissao
+        mostrarMediasPorAlunoTurma(aluno1);
 
         //Printando todas as notas de avaliações por turma → avaliacao → submissao
-        mostrarNotas(turma1);
-        mostrarNotas(turma2);
+        //mostrarNotas(turma1);
+        //mostrarNotas(turma2);
 
         //Removendo aluno e derrubando submissões
         mostrarSubmissoes(turma1);
-        aluno3.killAluno();
+        aluno1.killAluno();
         mostrarSubmissoes(turma1);
 
     }
@@ -163,5 +168,36 @@ public class Main {
             }
         }
     }
+
+    public static void mostrarMediasPorAlunoTurma(Student aluno) {
+        Random random = new Random();
+        for (Classroom c: aluno.getClassrooms()) {
+            System.out.println(aluno.getClassrooms().size());
+            for (Assessment as : c.getAssessments()) {
+                Submission sub = new Submission(aluno, as);
+                sub.setNota(random.nextDouble() * 10);
+                sub.setData("23/4/2025");
+                sub.setObs("Observação");
+                sub.setAluno(aluno);
+                as.addSubmissao(sub);
+
+
+            }
+            PerformanceReport pR = new PerformanceReport();
+            pR.setNotasIndividuais(c, aluno);
+            pR.setMediaPonderada();
+            System.out.println("Média ponderada de " + aluno.getNome()
+                    + " na disciplina  " + pR.getNomeCurso() + " : "
+                    + String.format("%.2f", pR.getMediaPonderada()));
+            pR.setAproveitamento();
+            System.out.println("Aproveitamento: "
+                    + String.format("%.2f", pR.getAproveitamento()) + "%");
+            System.out.println("-".repeat(20));
+        }
+
+
+    }
 }
+
+
 
